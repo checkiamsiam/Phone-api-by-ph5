@@ -60,8 +60,6 @@ const showDetails = clickedPhone => {
    <li><b>USB:</b> ${clickedPhone.data?.others?.USB}</li>
    <li><b>NFC:</b> ${clickedPhone.data?.others?.NFC}</li>
    <li><b>Radio:</b> ${clickedPhone.data?.others?.Radio}</li>
-   <li><b>Radio:</b> ${clickedPhone.data?.others?.Radio}</li>
-   <li><b>Radio:</b> ${clickedPhone.data?.others?.Radio}</li>
  </ul></div>
    </div>
   <div class="card-body">
