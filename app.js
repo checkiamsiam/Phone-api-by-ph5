@@ -96,8 +96,8 @@ const showDetails = clickedPhone => {
    <div class="col-md-5"> <img src="${clickedPhone.data.image}" class="card-img-top w-75" alt="image not found">
    <div class="card-body">
     <h5 class="card-title">${clickedPhone.data.name}(${clickedPhone.data.brand})</h5>
-    <p class="card-text"><b>Sensor Board:</b> ${sensors}</p>
     <p class="card-text"><small class="text-muted">${releaseDate}</small></p>
+    <p class="card-text"><b>Sensor Board:</b> ${sensors}</p>
   </div>
   </div>
    <div class="col-md-7 m-auto"> 
