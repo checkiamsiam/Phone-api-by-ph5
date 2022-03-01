@@ -5,13 +5,13 @@ const mainField = document.getElementById('main-filed');
 
 
 document.getElementById('button-addon2').addEventListener('click', function () {
+  document.getElementById('pre-loader').style.display = 'block';
   fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText.value}`)
     .then(res => res.json())
     .then(data => displayResult(data))
 });
 
 const displayResult = phones => {
-
   if (searchText.value === '') {
     mainField.style.display = 'none';
     document.getElementById('empty-error').style.display = 'block';
@@ -31,7 +31,7 @@ const displayResult = phones => {
     document.getElementById('result-error').style.display = 'none';
     document.getElementById('empty-error').style.display = 'none';
     document.getElementById('result-header').style.display = 'block';
-    for(let i = 0; i < 20; i++) {
+    for(let i = 0; i < phones.data.slice(0,20).length ; i++) {
       const result = document.createElement('div');
       result.classList.add('col');
       result.innerHTML = `
@@ -47,6 +47,7 @@ const displayResult = phones => {
       resultContainer.appendChild(result);
     }
   }
+  document.getElementById('pre-loader').style.display = 'none';
 };
 
 const details = id => {
@@ -56,7 +57,7 @@ const details = id => {
 };
 
 const showDetails = clickedPhone => {
-  location = '#phone-details'
+  location = '#phone-details';
   let sensors = '';
   if (clickedPhone.data?.mainFeatures?.sensors != undefined) {
     let sensorBoard = clickedPhone.data?.mainFeatures?.sensors;
@@ -66,6 +67,7 @@ const showDetails = clickedPhone => {
   } else {
     sensors = "Sensors data isn't given or found"
   }
+
   phoneDetails.innerHTML = ``;
   const detailCard = document.createElement('div');
   detailCard.classList.add('card')
@@ -93,7 +95,6 @@ const showDetails = clickedPhone => {
  </ul>
  </div>
   </div>
-  
   `
   phoneDetails.appendChild(detailCard)
 };

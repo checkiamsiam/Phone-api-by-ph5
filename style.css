@@ -7,7 +7,7 @@ body {
 #search-field:focus {
   box-shadow: 4px 2px 8px 1px;
 }
-#result-header , #result-error , #empty-error{
+#result-header , #result-error , #empty-error , #pre-loader{
   display: none;
 }
 button{
