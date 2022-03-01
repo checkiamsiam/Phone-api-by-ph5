@@ -7,10 +7,10 @@ body {
 #search-field:focus {
   box-shadow: 4px 2px 8px 1px;
 }
-#button-addon2 {
+button{
   box-shadow: none;
   background-image: linear-gradient(rgb(110, 131, 44), yellow);
 }
-#button-addon2:hover {
+button:hover {
   background-image: linear-gradient(135deg, yellow, rgb(110, 131, 44));
 }
