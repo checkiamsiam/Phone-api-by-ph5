@@ -1,16 +1,21 @@
+/* root level */
 * {
   font-family: "M PLUS Code Latin", sans-serif;
 }
 body {
   background-color: #e8e9fe;
 }
+/* under body */
 #search-field:focus {
   box-shadow: 4px 2px 8px 1px;
 }
-#result-header , #result-error , #empty-error , #pre-loader{
+#result-header,
+#result-error,
+#empty-error,
+#pre-loader {
   display: none;
 }
-button{
+button {
   box-shadow: none;
   background-image: linear-gradient(rgb(110, 131, 44), yellow);
 }

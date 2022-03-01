@@ -1,17 +1,22 @@
+// variable declaration
 const searchText = document.getElementById('search-field');
 const resultContainer = document.getElementById('result-container');
 const phoneDetails = document.getElementById('phone-details');
 const mainField = document.getElementById('main-filed');
 
+// click event on search button
 
+// data load
 document.getElementById('button-addon2').addEventListener('click', function () {
-  document.getElementById('pre-loader').style.display = 'block';
+  document.getElementById('pre-loader').style.display = 'block';//preloader show
   fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText.value}`)
     .then(res => res.json())
     .then(data => displayResult(data))
 });
 
+// main event
 const displayResult = phones => {
+  // error handels
   if (searchText.value === '') {
     mainField.style.display = 'none';
     document.getElementById('empty-error').style.display = 'block';
@@ -23,7 +28,9 @@ const displayResult = phones => {
     document.getElementById('result-error').style.display = 'block';
     document.getElementById('empty-error').style.display = 'none';
     document.getElementById('result-header').style.display = 'none';
-  } else {
+  }
+  // if everything ok results on search
+  else {
     mainField.style.display = 'block';
     searchText.value = '';
     resultContainer.textContent = '';
@@ -31,7 +38,8 @@ const displayResult = phones => {
     document.getElementById('result-error').style.display = 'none';
     document.getElementById('empty-error').style.display = 'none';
     document.getElementById('result-header').style.display = 'block';
-    for(let i = 0; i < phones.data.slice(0,20).length ; i++) {
+    // show result (maximun 20)
+    for (let i = 0; i < phones.data.slice(0, 20).length; i++) {
       const result = document.createElement('div');
       result.classList.add('col');
       result.innerHTML = `
@@ -47,17 +55,22 @@ const displayResult = phones => {
       resultContainer.appendChild(result);
     }
   }
-  document.getElementById('pre-loader').style.display = 'none';
+  document.getElementById('pre-loader').style.display = 'none';//preloader close
 };
+// event on click detail button
 
+// data load 
 const details = id => {
   fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
     .then(res => res.json())
     .then(data => showDetails(data))
 };
 
+// main event
 const showDetails = clickedPhone => {
+  // move on details section
   location = '#phone-details';
+  // sensors data loaded from an array
   let sensors = '';
   if (clickedPhone.data?.mainFeatures?.sensors != undefined) {
     let sensorBoard = clickedPhone.data?.mainFeatures?.sensors;
@@ -67,7 +80,7 @@ const showDetails = clickedPhone => {
   } else {
     sensors = "Sensors data isn't given or found"
   }
-
+  // detains section making
   phoneDetails.innerHTML = ``;
   const detailCard = document.createElement('div');
   detailCard.classList.add('card')
