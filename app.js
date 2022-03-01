@@ -56,6 +56,7 @@ const details = id => {
 };
 
 const showDetails = clickedPhone => {
+  location = '#phone-details'
   let sensors = '';
   if (clickedPhone.data?.mainFeatures?.sensors != undefined) {
     let sensorBoard = clickedPhone.data?.mainFeatures?.sensors;
