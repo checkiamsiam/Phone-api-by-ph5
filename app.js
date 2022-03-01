@@ -16,6 +16,7 @@ const displayResult = phones => {
     document.getElementById('result-error').style.display = 'none';
     document.getElementById('result-header').style.display = 'none';
   } else if (phones.data.length === 0) {
+    searchText.value = '';
     document.getElementById('result-error').style.display = 'block';
     document.getElementById('empty-error').style.display = 'none';
     document.getElementById('result-header').style.display = 'none';
