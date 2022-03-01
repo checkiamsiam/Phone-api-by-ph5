@@ -7,6 +7,9 @@ body {
 #search-field:focus {
   box-shadow: 4px 2px 8px 1px;
 }
+#result-header , #result-error , #empty-error{
+  display: none;
+}
 button{
   box-shadow: none;
   background-image: linear-gradient(rgb(110, 131, 44), yellow);

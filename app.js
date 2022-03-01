@@ -12,13 +12,20 @@ document.getElementById('button-addon2').addEventListener('click', function () {
 const displayResult = phones => {
 
   if (searchText.value === '') {
-    alert('dddd')
+    document.getElementById('empty-error').style.display = 'block';
+    document.getElementById('result-error').style.display = 'none';
+    document.getElementById('result-header').style.display = 'none';
   } else if (phones.data.length === 0) {
-    alert('ssss')
+    document.getElementById('result-error').style.display = 'block';
+    document.getElementById('empty-error').style.display = 'none';
+    document.getElementById('result-header').style.display = 'none';
   } else {
     searchText.value = '';
     resultContainer.textContent = '';
     phoneDetails.textContent = '';
+    document.getElementById('result-error').style.display = 'none';
+    document.getElementById('empty-error').style.display = 'none';
+    document.getElementById('result-header').style.display = 'block';
     for (let i = 0; i < 20; i++) {
       console.log(phones.data[i]);
       const result = document.createElement('div');
@@ -60,7 +67,13 @@ const showDetails = clickedPhone => {
   detailCard.classList.add('card')
   detailCard.innerHTML = `
    <div class="row p-5">
-   <div class="col-md-5"> <img src="${clickedPhone.data.image}" class="card-img-top w-75" alt="image not found"></div>
+   <div class="col-md-5"> <img src="${clickedPhone.data.image}" class="card-img-top w-75" alt="image not found">
+   <div class="card-body">
+    <h5 class="card-title">${clickedPhone.data.name}(${clickedPhone.data.brand})</h5>
+    <p class="card-text"><b>Sensor Board:</b> ${sensors}</p>
+    <p class="card-text"><small class="text-muted">${clickedPhone.data.releaseDate}</small></p>
+  </div>
+  </div>
    <div class="col-md-7 m-auto"> 
    <ul>
    <li><b>Memory:</b> ${clickedPhone.data?.mainFeatures?.memory}</li>
@@ -75,12 +88,8 @@ const showDetails = clickedPhone => {
    <li><b>Radio:</b> ${clickedPhone.data?.others?.Radio}</li>
  </ul>
  </div>
-   </div>
-  <div class="card-body">
-    <h5 class="card-title">${clickedPhone.data.name}(${clickedPhone.data.brand})</h5>
-    <p class="card-text"><b>Sensor Board:</b> ${sensors}</p>
-    <p class="card-text"><small class="text-muted">${clickedPhone.data.releaseDate}</small></p>
   </div>
+  
   `
   phoneDetails.appendChild(detailCard)
 }
