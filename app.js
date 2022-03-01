@@ -43,6 +43,16 @@ const details = id => {
 }
 
 const showDetails = clickedPhone => {
+  let sensors = '';
+  if (clickedPhone.data?.mainFeatures?.sensors != undefined) {
+    let sensorBoard = clickedPhone.data?.mainFeatures?.sensors;
+    for (const sens of sensorBoard) {
+      sensors = sensors + ' ' + sens + ',';
+    }
+  } else {
+    sensors = "Sensors data isn't given or found"
+  }
+  console.log(sensors);
   phoneDetails.innerHTML = ``;
   const detailCard = document.createElement('div');
   detailCard.classList.add('card')
@@ -54,17 +64,19 @@ const showDetails = clickedPhone => {
    <li><b>Memory:</b> ${clickedPhone.data?.mainFeatures?.memory}</li>
    <li><b>Display:</b> ${clickedPhone.data?.mainFeatures?.displaySize}</li>
    <li><b>Chipset:</b> ${clickedPhone.data?.mainFeatures?.chipSet}</li>
+   <h3><strong>Others:</strong></h3>
    <li><b>Bluetooth:</b> ${clickedPhone.data?.others?.Bluetooth}</li>
    <li><b>GPS:</b> ${clickedPhone.data?.others?.GPS}</li>
    <li><b>WLAN:</b> ${clickedPhone.data?.others?.WLAN}</li>
    <li><b>USB:</b> ${clickedPhone.data?.others?.USB}</li>
    <li><b>NFC:</b> ${clickedPhone.data?.others?.NFC}</li>
    <li><b>Radio:</b> ${clickedPhone.data?.others?.Radio}</li>
- </ul></div>
+ </ul>
+ </div>
    </div>
   <div class="card-body">
     <h5 class="card-title">${clickedPhone.data.name}(${clickedPhone.data.brand})</h5>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text"><b>Sensor Board:</b> ${sensors}</p>
     <p class="card-text"><small class="text-muted">${clickedPhone.data.releaseDate}</small></p>
   </div>
   `
