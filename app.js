@@ -1,34 +1,37 @@
 const searchText = document.getElementById('search-field');
 const resultContainer = document.getElementById('result-container');
 const phoneDetails = document.getElementById('phone-details');
+const mainField = document.getElementById('main-filed');
 
 
 document.getElementById('button-addon2').addEventListener('click', function () {
   fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText.value}`)
     .then(res => res.json())
     .then(data => displayResult(data))
-})
+});
 
 const displayResult = phones => {
 
   if (searchText.value === '') {
+    mainField.style.display = 'none';
     document.getElementById('empty-error').style.display = 'block';
     document.getElementById('result-error').style.display = 'none';
     document.getElementById('result-header').style.display = 'none';
   } else if (phones.data.length === 0) {
     searchText.value = '';
+    mainField.style.display = 'none';
     document.getElementById('result-error').style.display = 'block';
     document.getElementById('empty-error').style.display = 'none';
     document.getElementById('result-header').style.display = 'none';
   } else {
+    mainField.style.display = 'block';
     searchText.value = '';
     resultContainer.textContent = '';
     phoneDetails.textContent = '';
     document.getElementById('result-error').style.display = 'none';
     document.getElementById('empty-error').style.display = 'none';
     document.getElementById('result-header').style.display = 'block';
-    for (let i = 0; i < 20; i++) {
-      console.log(phones.data[i]);
+    for(let i = 0; i < 20; i++) {
       const result = document.createElement('div');
       result.classList.add('col');
       result.innerHTML = `
@@ -38,19 +41,19 @@ const displayResult = phones => {
                   <h5 class="card-title">${phones.data[i]?.phone_name}</h5>
                   <h6 class="card-title">${phones.data[i]?.brand}</h6>
                 </div>
-                <button onclick="details('${phones.data[i].slug}')" class="rounded-pill m-2">Show Details</button>
+                <button onclick="details('${phones.data[i]?.slug}')" class="rounded-pill m-2">Show Details</button>
               </div>
       `;
       resultContainer.appendChild(result);
     }
   }
-}
+};
 
 const details = id => {
   fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
     .then(res => res.json())
     .then(data => showDetails(data))
-}
+};
 
 const showDetails = clickedPhone => {
   let sensors = '';
@@ -62,7 +65,6 @@ const showDetails = clickedPhone => {
   } else {
     sensors = "Sensors data isn't given or found"
   }
-  console.log(sensors);
   phoneDetails.innerHTML = ``;
   const detailCard = document.createElement('div');
   detailCard.classList.add('card')
@@ -93,4 +95,4 @@ const showDetails = clickedPhone => {
   
   `
   phoneDetails.appendChild(detailCard)
-}
+};
