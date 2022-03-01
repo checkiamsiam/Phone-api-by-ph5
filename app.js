@@ -80,6 +80,13 @@ const showDetails = clickedPhone => {
   } else {
     sensors = "Sensors data isn't given or found"
   }
+  // release date data
+  let releaseDate = '';
+  if (clickedPhone.data?.releaseDate != undefined) {
+    releaseDate = clickedPhone.data?.releaseDate;
+    } else {
+    releaseDate = "release date isn't announced or didn't found"
+  }
   // detains section making
   phoneDetails.innerHTML = ``;
   const detailCard = document.createElement('div');
@@ -90,7 +97,7 @@ const showDetails = clickedPhone => {
    <div class="card-body">
     <h5 class="card-title">${clickedPhone.data.name}(${clickedPhone.data.brand})</h5>
     <p class="card-text"><b>Sensor Board:</b> ${sensors}</p>
-    <p class="card-text"><small class="text-muted">${clickedPhone.data.releaseDate}</small></p>
+    <p class="card-text"><small class="text-muted">${releaseDate}</small></p>
   </div>
   </div>
    <div class="col-md-7 m-auto"> 
